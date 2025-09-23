@@ -1017,15 +1017,15 @@ namespace GENTRY.WebApp.Migrations
             modelBuilder.Entity("GENTRY.WebApp.Models.AiTrainingData", b =>
                 {
                     b.HasOne("GENTRY.WebApp.Models.Outfit", "Outfit")
-                        .WithMany()
+                        .WithMany("AiTrainingData")
                         .HasForeignKey("OutfitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GENTRY.WebApp.Models.User", "User")
-                        .WithMany()
+                        .WithMany("AiTrainingData")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Outfit");
@@ -1057,7 +1057,7 @@ namespace GENTRY.WebApp.Migrations
                     b.HasOne("GENTRY.WebApp.Models.User", "User")
                         .WithMany("Collections")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("CoverFile");
@@ -1264,6 +1264,8 @@ namespace GENTRY.WebApp.Migrations
 
             modelBuilder.Entity("GENTRY.WebApp.Models.Outfit", b =>
                 {
+                    b.Navigation("AiTrainingData");
+
                     b.Navigation("OutfitFeatures");
 
                     b.Navigation("OutfitItems");
@@ -1286,6 +1288,8 @@ namespace GENTRY.WebApp.Migrations
 
             modelBuilder.Entity("GENTRY.WebApp.Models.User", b =>
                 {
+                    b.Navigation("AiTrainingData");
+
                     b.Navigation("Collections");
 
                     b.Navigation("Items");

@@ -30,5 +30,7 @@ namespace GENTRY.WebApp.Models
         public virtual Style? Style { get; set; }
         public virtual ICollection<OutfitItem> OutfitItems { get; set; } = new List<OutfitItem>();
         public virtual ICollection<OutfitFeature> OutfitFeatures { get; set; } = new List<OutfitFeature>();
+        public virtual ICollection<AiTrainingData> AiTrainingData { get; set; } = new List<AiTrainingData>();
+
     }
 }

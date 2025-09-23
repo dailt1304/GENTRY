@@ -51,4 +51,34 @@ public partial class GENTRYDbContext : DbContext
     public virtual DbSet<AffiliateLink> AffiliateLinks { get; set; }
     public virtual DbSet<Admin> Admins { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<AiTrainingData>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            // Quan hệ với Outfit
+            entity.HasOne(e => e.Outfit)
+                  .WithMany(o => o.AiTrainingData) // nhớ thêm ICollection<AiTrainingData> trong Outfit
+                  .HasForeignKey(e => e.OutfitId)
+                  .OnDelete(DeleteBehavior.Cascade); // vẫn cho phép xóa Outfit thì xóa dữ liệu liên quan
+
+            // Quan hệ với User
+            entity.HasOne(e => e.User)
+                  .WithMany(u => u.AiTrainingData) // nhớ thêm ICollection<AiTrainingData> trong User
+                  .HasForeignKey(e => e.UserId)
+                  .OnDelete(DeleteBehavior.Restrict); // tránh multiple cascade path
+        });
+
+        modelBuilder.Entity<Collection>(entity =>
+        {
+            entity.HasOne(c => c.User)
+                  .WithMany(u => u.Collections)
+                  .HasForeignKey(c => c.UserId)
+                  .OnDelete(DeleteBehavior.Restrict); // hoặc NoAction
+        });
+    }
+
 }

@@ -50,5 +50,7 @@ namespace GENTRY.WebApp.Models
         public virtual ICollection<Item> Items { get; set; } = new List<Item>();
         public virtual ICollection<Outfit> Outfits { get; set; } = new List<Outfit>();
         public virtual ICollection<Collection> Collections { get; set; } = new List<Collection>();
+        public virtual ICollection<AiTrainingData> AiTrainingData { get; set; } = new List<AiTrainingData>();
+
     }
 }
