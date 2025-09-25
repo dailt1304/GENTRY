@@ -195,7 +195,6 @@ namespace GENTRY.WebApp.Services.Services
                 user.Password = request.NewPassword;
                 
                 await _userService.UpdateUserAsync(user);
-                await Repo.SaveAsync();
 
                 return new ResetPasswordResponse
                 {

@@ -47,8 +47,6 @@
   <ItemGroup>
     <Folder Include="Helper\" />
     <Folder Include="wwwroot\" />
-    <Folder Include="Services\Helper\" />
-    <Folder Include="Services\SignalRLab\" />
   </ItemGroup>
 
 </Project>
