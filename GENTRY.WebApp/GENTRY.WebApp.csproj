@@ -5,21 +5,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>30424f6c-2bc2-4f4d-89be-ceed294fea9a</UserSecretsId>
+
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Interface\**" />
     <Compile Remove="Helpers\**" />
     <Compile Remove="Hub\**" />
-    <Compile Remove="Views\CustomerManagerment\**" />
+    <Content Remove="Controllers\Interface\**" />
     <Content Remove="Helpers\**" />
     <Content Remove="Hub\**" />
-    <Content Remove="Views\CustomerManagerment\**" />
+    <EmbeddedResource Remove="Controllers\Interface\**" />
     <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="Hub\**" />
-    <EmbeddedResource Remove="Views\CustomerManagerment\**" />
+    <None Remove="Controllers\Interface\**" />
     <None Remove="Helpers\**" />
     <None Remove="Hub\**" />
-    <None Remove="Views\CustomerManagerment\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,31 +40,15 @@
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="QRCoder-ImageSharp" Version="0.10.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Interface\" />
-    <Folder Include="Filters\" />
     <Folder Include="Helper\" />
-    <Folder Include="Hubs\" />
-    <Folder Include="Models\Home\" />
-    <Folder Include="Models\Login\" />
-    <Folder Include="Models\ViewModels\" />
-    <Folder Include="Services\DataTransferObjects\" />
+    <Folder Include="wwwroot\" />
     <Folder Include="Services\Helper\" />
-    <Folder Include="Services\Services\" />
     <Folder Include="Services\SignalRLab\" />
-    <Folder Include="wwwroot\microsoft\signalr\" />
-    <Folder Include="wwwroot\Uploads\Dishes\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="wwwroot\css\site.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Uploads\restaurant_logo.jpg" />
   </ItemGroup>
 
 </Project>

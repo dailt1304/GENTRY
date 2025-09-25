@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace GENTRY.WebApp.Models;
 
@@ -10,7 +11,7 @@ public partial class GENTRYDbContext : DbContext
     {
     }
 
-    public GENTRYDbContext(DbContextOptions<GENTRYDbContext> options) : base(options)
+    public GENTRYDbContext(DbContextOptions<GENTRYDbContext> options) : base(options) 
     {
     }
 
@@ -54,6 +55,8 @@ public partial class GENTRYDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+
 
         modelBuilder.Entity<AiTrainingData>(entity =>
         {

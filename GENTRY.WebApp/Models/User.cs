@@ -1,4 +1,5 @@
 ﻿using GENTRY.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,22 @@ namespace GENTRY.WebApp.Models
         [MaxLength(50)]
         public string? LastName { get; set; }
 
+        // Computed property for FullName
+        [NotMapped]
+        public string FullName 
+        { 
+            get => $"{FirstName} {LastName}".Trim(); 
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    var names = value.Trim().Split(' ', 2);
+                    FirstName = names[0];
+                    LastName = names.Length > 1 ? names[1] : "";
+                }
+            }
+        }
+
         [ForeignKey("AvatarFile")]
         public int? AvatarFileId { get; set; }
 
@@ -41,10 +58,16 @@ namespace GENTRY.WebApp.Models
         [MaxLength(50)]
         public string? BodyType { get; set; }
 
-        public string? StylePreferences { get; set; } 
-        public string? SizePreferences { get; set; }  
+        public string? StylePreferences { get; set; }
+        public string? SizePreferences { get; set; }
 
         public bool IsActive { get; set; } = true;
+
+        public bool IsPremium { get; set; } = false;
+
+        // Computed property for Role
+        [NotMapped]
+        public string Role => IsPremium ? "PremiumUser" : "NormalUser";
 
         public virtual File? AvatarFile { get; set; }
         public virtual ICollection<Item> Items { get; set; } = new List<Item>();
@@ -53,4 +76,6 @@ namespace GENTRY.WebApp.Models
         public virtual ICollection<AiTrainingData> AiTrainingData { get; set; } = new List<AiTrainingData>();
 
     }
+
 }
+
