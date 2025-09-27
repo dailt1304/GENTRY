@@ -33,6 +33,9 @@ namespace GENTRY.WebApp.Models
         [MaxLength(20)]
         public string? Size { get; set; }
 
+        [MaxLength(500)]
+        public string? Tags { get; set; }
+
         public decimal? Price { get; set; }
         public DateTime? PurchaseDate { get; set; }
 
@@ -40,6 +43,7 @@ namespace GENTRY.WebApp.Models
         public virtual Category Category { get; set; } = null!;
         public virtual File? File { get; set; }
         public virtual Color? Color { get; set; }
+
 
         public virtual ICollection<OutfitItem> OutfitItems { get; set; } = new List<OutfitItem>();
         public virtual ICollection<AffiliateLink> AffiliateLinks { get; set; } = new List<AffiliateLink>();

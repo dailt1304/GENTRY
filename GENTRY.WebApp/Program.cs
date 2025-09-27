@@ -5,6 +5,7 @@ using GENTRY.WebApp.Services.Interfaces;
 using GENTRY.WebApp.Services.Services;
 using GENTRY.WebApp.Services;
 using RestX.WebApp.Services;
+using GENTRY.WebApp.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,10 @@ builder.Services.AddDbContext<GENTRYDbContext>(options =>
 builder.Services.AddScoped<IRepository, EntityFrameworkRepository<GENTRYDbContext>>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IFileService, CloudinaryService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IColorService, ColorService>();
 builder.Services.AddScoped<IExceptionHandler, GENTRY.WebApp.Services.ExceptionHandler>();
 builder.Services.AddHttpContextAccessor(); // Để inject vào BaseService
 
@@ -92,7 +97,8 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowFrontend");
 
-app.UseAuthentication(); 
+app.UseAuthentication();
+app.UseGENTRYContext(); // Phải đặt sau UseAuthentication để có thể đọc claims
 app.UseAuthorization();
 
 app.MapControllers();
