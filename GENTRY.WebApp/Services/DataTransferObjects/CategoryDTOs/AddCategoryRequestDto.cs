@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GENTRY.WebApp.Services.DataTransferObjects.CategoryDTOs
 {
-    public class CategoryDto
+    public class AddCategoryRequestDto
     {
-        public int CategoryId { get; set; }
         [Required, MaxLength(100)]
         public string Name { get; set; } = null!;
 
@@ -17,6 +15,7 @@ namespace GENTRY.WebApp.Services.DataTransferObjects.CategoryDTOs
         public int? ImageFileId { get; set; }
 
         public bool IsActive { get; set; } = true;
+        
         public int SortOrder { get; set; } = 0;
     }
 }

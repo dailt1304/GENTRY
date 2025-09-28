@@ -75,7 +75,34 @@ namespace GENTRY.WebApp.Services.Helper
                 .ForSourceMember(src => src.ImageFile, opt => opt.DoNotValidate());
 
             // Map Category to CategoryDto
-            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CategoryId));
+
+            // Map AddCategoryRequestDto to Category
+            CreateMap<AddCategoryRequestDto, Category>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.ModifiedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.ModifiedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.Parent, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageFile, opt => opt.Ignore())
+                .ForMember(dest => dest.Children, opt => opt.Ignore())
+                .ForMember(dest => dest.Items, opt => opt.Ignore());
+
+            // Map UpdateCategoryRequestDto to Category
+            CreateMap<UpdateCategoryRequestDto, Category>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.ModifiedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.ModifiedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.Parent, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageFile, opt => opt.Ignore())
+                .ForMember(dest => dest.Children, opt => opt.Ignore())
+                .ForMember(dest => dest.Items, opt => opt.Ignore());
 
             // Map Color to ColorDto
             CreateMap<Color, ColorDto>().ReverseMap();
