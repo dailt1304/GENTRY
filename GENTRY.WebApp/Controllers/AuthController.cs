@@ -135,7 +135,10 @@ namespace GENTRY.WebApp.Controllers
                     });
 
                 // 7. Trả kết quả thành công
-                return Ok(result);
+                return Ok(new { 
+                    success = true,
+                    data = result
+                });
             }
             catch (Exception ex)
             {
